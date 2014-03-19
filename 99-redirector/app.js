@@ -4,9 +4,13 @@ var http = require('http');
 
 var connect = require('connect');
 
+var logger = require('./logger');
+
 var redirects = require('./redirects.json');
 
 var app = connect();
+
+app.use(logger({ level: 'INFO' }));
 
 app.use(function (req, res) {
   var alias = req.url.substring(1);
