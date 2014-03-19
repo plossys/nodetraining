@@ -1,0 +1,7 @@
+{
+  "name": "05-connect",
+  "version": "0.0.1",
+  "dependencies": {
+    "connect": "2.14.3"
+  }
+}
