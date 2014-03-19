@@ -2,29 +2,24 @@
 
 var http = require('http');
 
-var connect = require('connect');
+var express = require('express');
 
 var logger = require('./logger');
 
 var redirects = require('./redirects.json');
 
-var app = connect();
+var app = express();
 
 app.use(logger({ level: 'INFO' }));
 
-app.use(function (req, res) {
-  var alias = req.url.substring(1);
+app.get('/:alias', function (req, res) {
+  var alias = req.params.alias;
 
   if (!redirects[alias]) {
-    res.writeHead(404);
-    res.end();
-    return;
+    return res.send(404);
   }
 
-  res.writeHead(302, {
-    location: redirects[alias]
-  });
-  res.end();
+  res.redirect(redirects[alias]);
 });
 
 var server = http.createServer(app);
