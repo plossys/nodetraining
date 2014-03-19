@@ -1,6 +1,7 @@
 'use strict';
 
-var http = require('http');
+var http = require('http'),
+    path = require('path');
 
 var express = require('express');
 
@@ -10,7 +11,16 @@ var redirects = require('./redirects.json');
 
 var app = express();
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
 app.use(logger({ level: 'INFO' }));
+
+app.get('/', function (req, res) {
+  res.render('index', {
+    redirects: redirects
+  });
+});
 
 app.get('/:alias', function (req, res) {
   var alias = req.params.alias;
