@@ -8,6 +8,12 @@ var redirects = {
 var server = http.createServer(function (req, res) {
   var alias = req.url.substring(1);
 
+  if (!redirects[alias]) {
+    res.writeHead(404);
+    res.end();
+    return;
+  }
+
   res.writeHead(302, {
     location: redirects[alias]
   });
