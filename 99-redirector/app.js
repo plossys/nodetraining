@@ -2,9 +2,13 @@
 
 var http = require('http');
 
+var connect = require('connect');
+
 var redirects = require('./redirects.json');
 
-var server = http.createServer(function (req, res) {
+var app = connect();
+
+app.use(function (req, res) {
   var alias = req.url.substring(1);
 
   if (!redirects[alias]) {
@@ -18,6 +22,8 @@ var server = http.createServer(function (req, res) {
   });
   res.end();
 });
+
+var server = http.createServer(app);
 
 server.listen(3000, function () {
   console.log('Node.js server listening on port 3000');
