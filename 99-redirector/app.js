@@ -1,9 +1,8 @@
+'use strict';
+
 var http = require('http');
 
-var redirects = {
-  g: 'http://www.google.de',
-  h: 'http://www.heise.de/newsticker'
-};
+var redirects = require('./redirects.json');
 
 var server = http.createServer(function (req, res) {
   var alias = req.url.substring(1);
