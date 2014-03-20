@@ -10,10 +10,10 @@
         <th>Alias</th>
         <th>URL</th>
       </tr>
-      <% for (var alias in redirects) { %>
+      <% for (var i = 0; i < redirects.length; i++) { %>
         <tr>
-          <td><%= alias %></td>
-          <td><%= redirects[alias] %></td>
+          <td><%= redirects[i].alias %></td>
+          <td><%= redirects[i].url %></td>
         </tr>
       <% } %>
     </table>
