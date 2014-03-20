@@ -1,0 +1,7 @@
+{
+  "name": "07-mocha",
+  "version": "0.0.1",
+  "dependencies": {
+    "node-assertthat": "0.0.21"
+  }
+}
