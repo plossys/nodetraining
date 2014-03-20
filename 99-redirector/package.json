@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "ejs": "0.8.5",
-    "express": "3.4.8"
+    "express": "3.4.8",
+    "node-assertthat": "0.0.21"
   }
 }
