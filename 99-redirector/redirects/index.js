@@ -11,10 +11,9 @@ var redirects = {
     var redirects = [];
 
     for (var alias in data) {
-      redirects.push({
-        alias: alias,
-        url: data[alias]
-      });
+      if (data.hasOwnProperty(alias)) {
+        redirects.push({ alias: alias, url: data[alias] });
+      }
     }
 
     callback(null, redirects);
