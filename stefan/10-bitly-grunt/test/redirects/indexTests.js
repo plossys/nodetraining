@@ -12,7 +12,7 @@ suite('redirects', function () {
         assert.that(data, is.equalTo([
             { alias: 'g', url: 'http://www.google.de' },
             { alias: 'h', url: 'http://www.heise.de/newsticker' }
-        ]));
+          ]));
         done();
       });
     });

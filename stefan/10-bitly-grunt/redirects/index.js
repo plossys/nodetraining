@@ -11,10 +11,12 @@ var redirects = {
     var result = [];
 
     for (var alias in data) {
-      result.push({
-        alias: alias,
-        url: data[alias]
-      });
+      if (data.hasOwnProperty(alias)) {
+        result.push({
+          alias: alias,
+          url: data[alias]
+        });
+      }
     }
 
     callback(null, result);
@@ -27,6 +29,6 @@ var redirects = {
     callback(null, data[alias]);
   }
 
-}
+};
 
 module.exports = redirects;
