@@ -6,6 +6,8 @@ var redirects = require('../../redirects');
 
 suite('redirects', function () {
   suite('getAll', function () {
+    test('returns an empty list if no redirects were configured.');
+
     test('returns all redirects.', function (done) {
       redirects.getAll(function (err, actual) {
         assert.that(err, is.null());
@@ -28,7 +30,7 @@ suite('redirects', function () {
     });
 
     test('returns an error for a non-existing alias.', function (done) {
-      redirects.getBy('foo', function (err, actual) {
+      redirects.getBy('foo', function (err) {
         assert.that(err, is.not.null());
         done();
       });
