@@ -4,7 +4,6 @@ var http = require('http'),
   path = require('path');
 
 var express = require('express');
-
 var logger = require('./infrastructure/logger');
 
 var redirects = require('./redirects');
