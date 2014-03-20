@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Redirects</title>
+  </head>
+
+  <body>
+    <table>
+      <tr>
+        <th>Alias</th>
+        <th>URL</th>
+      </tr>
+      <% for (var i=0; i<redirects.length; i++) { %>
+        <tr>
+          <td><%= redirects[i].alias %></td>
+          <td><%= redirects[i].url %></td>
+        </tr>
+      <% } %>
+    </table>
+  </body>
+</html>
