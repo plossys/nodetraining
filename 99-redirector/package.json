@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "dependencies": {
     "ejs": "0.8.5",
-    "express": "3.4.8"
+    "express": "3.4.8",
+    "nedb": "0.10.4"
   },
   "devDependencies": {
     "grunt": "0.4.4",

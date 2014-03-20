@@ -1,6 +1,18 @@
 'use strict';
 
-var data = require('./data.json');
+var path = require('path');
+
+var Datastore = require('nedb');
+
+var db = {
+  redirects: new Datastore({
+    filename: path.join(__dirname, 'redirects.json'),
+    autoload: true
+  })
+};
+
+// db.redirects.insert({ alias: 'w', url: 'http://www.wikipedia.de' }, function () {});
+// db.redirects.insert({ alias: 'e', url: 'http://www.ebay.de' }, function () {});
 
 var redirects = {
   // contains: function (alias, callback) {
@@ -8,22 +20,16 @@ var redirects = {
   // },
 
   getAll: function (callback) {
-    var redirects = [];
-
-    for (var alias in data) {
-      if (data.hasOwnProperty(alias)) {
-        redirects.push({ alias: alias, url: data[alias] });
-      }
-    }
-
-    callback(null, redirects);
+    db.redirects.find({}, callback);
   },
 
   getBy: function (alias, callback) {
-    if (!data[alias]) {
-      return callback(new Error('Alias not found.'));
-    }
-    callback(null, data[alias]);
+    db.redirects.findOne({ alias: alias }, function (err, redirect) {
+      if (err) {
+        return callback(err);
+      }
+      callback(null, redirect.url);
+    });
   }
 };
 
