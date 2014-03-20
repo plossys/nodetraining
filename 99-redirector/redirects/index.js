@@ -11,8 +11,8 @@ var db = {
   })
 };
 
-// db.redirects.insert({ alias: 'w', url: 'http://www.wikipedia.de' }, function () {});
-// db.redirects.insert({ alias: 'e', url: 'http://www.ebay.de' }, function () {});
+// db.redirects.insert({ alias: 'g', url: 'http://www.google.de' }, function () {});
+// db.redirects.insert({ alias: 'h', url: 'http://www.heise.de/newsticker' }, function () {});
 
 var redirects = {
   // contains: function (alias, callback) {
@@ -28,7 +28,10 @@ var redirects = {
       if (err) {
         return callback(err);
       }
-      callback(null, redirect.url);
+      if (!redirect) {
+        return callback(new Error('not found'), redirect);
+      }
+      callback(null, redirect);
     });
   }
 };

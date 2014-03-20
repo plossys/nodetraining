@@ -6,15 +6,15 @@ var redirects = require('../../redirects');
 
 suite('redirects', function () {
   suite('getAll', function () {
-    test('returns an empty list if no redirects were configured.');
+//    test('returns an empty list if no redirects were configured.');
 
     test('returns all redirects.', function (done) {
       redirects.getAll(function (err, actual) {
         assert.that(err, is.null());
-        assert.that(actual, is.equalTo([
-          { alias: 'g', url: 'http://www.google.de' },
-          { alias: 'h', url: 'http://www.heise.de/newsticker' }
-        ]));
+        assert.that(actual[0].alias, is.equalTo('g'));
+        assert.that(actual[0].url, is.equalTo('http://www.google.de'));
+        assert.that(actual[1].alias, is.equalTo('h'));
+        assert.that(actual[1].url, is.equalTo('http://www.heise.de/newsticker'));
         done();
       });
     });
@@ -24,7 +24,7 @@ suite('redirects', function () {
     test('returns a url for an existing alias.', function (done) {
       redirects.getBy('g', function (err, actual) {
         assert.that(err, is.null());
-        assert.that(actual, is.equalTo('http://www.google.de'));
+        assert.that(actual.url, is.equalTo('http://www.google.de'));
         done();
       });
     });
