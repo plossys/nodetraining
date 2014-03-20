@@ -5,9 +5,9 @@ var http = require('http'),
 
 var express = require('express');
 
-var logger = require('./logger');
+var logger = require('./infrastructure/logger');
 
-var redirects = require('./redirects.json');
+var redirects = require('./redirects');
 
 var app = express();
 
