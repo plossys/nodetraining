@@ -1,0 +1,37 @@
+'use strict';
+var path = require('path');
+var http = require('http');
+var logger = require('./infrastructure/logger');
+var express = require('express');
+var app = express();
+//app.set('view engine', 'ejs', )
+
+var urls = require('./redirects')
+app.use(express.favicon('./scc.ico'));
+app.use(logger({level:"Info"}));
+
+app.get ('/:alias', function (req, res) {
+
+  var targetLocation = req.params.alias;
+   
+  if (!targetLocation)
+  {
+  	res.writeHead(200, {
+    'content-type' : 'text/html'
+  });
+  res.write("Sorry I don't know a redirection for<br />");
+  res.write(req.url);
+
+  }
+  else
+  { 
+  res.redirect(targetLocation);
+}
+  res.end();
+});
+
+var server = http.createServer(app);
+
+server.listen(3000, function () {
+  console.log('Node.js server listening on port 3000')
+});
