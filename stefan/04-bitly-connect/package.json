@@ -1,0 +1,19 @@
+{
+  "name": "bitly",
+  "version": "0.0.1",
+  "description": "bitly redirector with connect",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bitly",
+    "connect",
+    "nodejs"
+  ],
+  "author": "Stefan Scherer",
+  "license": "MIT",
+  "dependencies": {
+    "connect": "2.14.3"
+  }
+}

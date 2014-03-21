@@ -27,11 +27,11 @@ app.get('/', function (req, res) {
 app.get('/:alias', function (req, res) {
   var alias = req.params.alias;
 
-  redirects.getBy(alias, function (err, match) {
+  redirects.getBy(alias, function (err, url) {
     if (err) {
       return res.send(404);
     }
-    res.redirect(match.url);
+    res.redirect(url);
   });
 });
 

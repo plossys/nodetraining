@@ -17,22 +17,19 @@ app.set('view engine', 'ejs');
 app.use(logger({ level: 'INFO' }));
 
 app.get('/', function (req, res) {
-  redirects.getAll(function (err, result) {
-    res.render('index', {
-      redirects: result
-    });
+  res.render('index', {
+    redirects: redirects
   });
 });
 
 app.get('/:alias', function (req, res) {
   var alias = req.params.alias;
 
-  redirects.getBy(alias, function (err, match) {
-    if (err) {
-      return res.send(404);
-    }
-    res.redirect(match.url);
-  });
+  if (!redirects[alias]) {
+    return res.send(404);
+  }
+
+  res.redirect(redirects[alias]);
 });
 
 var server = http.createServer(app);
