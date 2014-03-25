@@ -625,4 +625,95 @@ wenn man nur CSS Selektoren braucht, jQuery nutzt die auch
 
 
 
+## Node - CoffeeScript / TypeScript
+
+
+*CoffeeScript*
+http://coffeescript.org
+ähnelt Ruby
+drei Operatoren, die intern === sind
+```
+a is b
+a == b
+a === b
+```
+-> alle drei Varianten werden wohl gemischt in der Codebasis
+
+
+*TypeScript*
+http://www.typescriptlang.org
+class, extends, private
+-> kommt in ECMAScript 6
+-> TypeScript wird dann eigentlich überflüssig
+man kann jetzt schon so damit entwickeln
+Microsoft hat aber Erweiterungen eingebaut
+Generics
+ähnelt C#
+
+
+„zu faul“, JavaScript richtig zu lernen
+
+
+*Async Code*
+https://github.com/maxtaco/tamejs
+bindet dich an den Compiler
+
+
+## Node Makro Compiler - sweet.js
+
+
+http://sweetjs.org
+
+muss sich aber beweisen, ob das so langfristig Verbreitung findet
+
+-> Man sollte sich in JavaScript "native" auskennen.
+
+
+## Node - Authentifizierung
+
+*auth0*
+https://auth0.com
+npm install passport
+kommerzieller Dienstleister, bietet auch AD/LDAP über einen Windows Agent an.
+
+*passportjs*
+http://passportjs.org
+
+https://github.com/auth0/passport-windowsauth
+
+https://github.com/gheeres/node-activedirectory
+
+Qualität der Module selbst prüfen, ob die Enterprisefähig sind
+
+
+## Node - Modules
+
+*underscore*
+http://underscorejs.org
+
+*lodash*
+http://lodash.com
+
+*async*
+https://github.com/caolan/async
+verschluckt manchmal was
+
+*Datum  / Umrechnung / Zeitspannen*
+http://momentjs.com
+
+*Mailversand*
+https://github.com/andris9/Nodemailer
+
+
+*Plugins laden*
+-> mehrere Module nach Namensschema laden
+https://github.com/felixge/node-require-all
+
+
+
+
+
+
+
+
 
