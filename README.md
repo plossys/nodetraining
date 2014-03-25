@@ -352,6 +352,27 @@ https://github.com/isaacs/node-graceful-fs
 * drop in replacement for fs
 
 
+## Node - externe Programme
+
+
+Standardmodul `process`
+* muss nicht required werden
+
+http://nodejs.org/api/process.html
+* Status über eigenen Prozess
+
+
+
+
+http://nodejs.org/api/child_process.html
+* `process.fork()` für andere JavaScript Programme
+* `process.spawn()` für andere Binaries
+
+
+in kommender Node Version wird es ein `spawnSync()` geben, um auf ein Programm synchron zu warten
+
+
+## Node - Doku
 
 
 
