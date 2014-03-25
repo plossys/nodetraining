@@ -263,21 +263,18 @@ Grunt - the JavaScript Task Runner
 http://gruntjs.com
 
 
-
 ## Grunt
 
 http://www.heise.de/developer/the-next-big-thing-1790061.html
 
 Golos Blog
 
-
 http://www.heise.de/developer/artikel/Grunt-lagen-Reloaded-1946253.html
-
 
 -> Sample Gruntfile.js
 
-
 gulpjs -> kurzer Hype wegen async + pipe, aber kaum größere Steuerung so einfach (hello world only)
+
 
 ## GulpJS
 http://travismaynard.com/writing/getting-started-with-gulp
@@ -297,8 +294,6 @@ https://plus.google.com/+PaulIrish/posts/N5t9ny3R6e2
 
 ## node auf Kommandozeile
 
-
-
 `node app` -> `./app`
 shebang: `#!/usr/bin/env node`
 
@@ -317,18 +312,15 @@ optimist -> deprecated
 
 https://github.com/substack/minimist
 
-
 Tastatureingabe
 
 https://github.com/isaacs/read
-
 
 http://nodejs.org/api/readline.html
 ist aber unstable
 
 
 ## node - hilfreiche Tools
-
 
 https://www.npmjs.org/package/licensing
 
@@ -337,16 +329,12 @@ dep async -> dependencies in Projekten suchen, wo wird z.B. „async“ verwende
 
 ## Node - File System
 
-
 Standard fs Modul,
 http://nodejs.org/api/fs.html
-
 
 https://github.com/jprichardson/node-fs-extra
 * mkdirp -> rekursiv erzeugen
 * drop in replacement for fs
-
-
 
 https://github.com/isaacs/node-graceful-fs
 * drop in replacement for fs
@@ -354,31 +342,286 @@ https://github.com/isaacs/node-graceful-fs
 
 ## Node - externe Programme
 
-
 Standardmodul `process`
 * muss nicht required werden
 
 http://nodejs.org/api/process.html
 * Status über eigenen Prozess
 
-
-
-
 http://nodejs.org/api/child_process.html
 * `process.fork()` für andere JavaScript Programme
 * `process.spawn()` für andere Binaries
-
 
 in kommender Node Version wird es ein `spawnSync()` geben, um auf ein Programm synchron zu warten
 
 
 ## Node - Doku
 
+API Doku: jdsdoc
+http://usejsdoc.org
+sieht man aber eher selten.
+
+Ansonsten README.md
+
+
+
+## Node - memory und monitoring
+
+https://github.com/lloyd/node-memwatch
+löst ein leak event aus, das man weiter auswerten kann
+
+https://github.com/bnoordhuis/node-heapdump
+
+http://nodetime.com
+mittlerweile kommerziell
+-> per Cloud Dienst überwachbare Node Prozesse
+
+New Relic
+
+
+## Node - deployment
+
+Private Server
+-> stressig
+
+Cloud
+-> git push Schnittstelle, …
+
+Docker
+
+
+## Node - in process DB
+
+https://github.com/louischatriot/nedb
+* node embedded database
+* mongodb compatible
+
+in JavaScript implementiert, nicht os performant wie native
+
+
+
+## Node process manager - pm2
+
+Unitech/pm2 - node process manager with load balancer
+
+https://github.com/Unitech/pm2
+
+
+
+## Node - Code Review -> Memory footprint
+
+viele `xxx.on('xxx', …)`
+
+-> aber es fehlt der xx.removeListener -> Memory!!!
+
+muss gleiche Instanz sein
+
+
+```
+var foo = function () { … }
+dest.on(‚error‘, foo)
+dest.removeListener('error', foo)
+```
+
+oder 
+
+`dest.removeAllListeners('error')`
+
+oder sogar
+
+`dest.removeAllListeners()` -> trennt alles
 
 
 
 
 
+bei vielen Connections:
+dest.setTimeout(timeout, function {} )
+-> es wird pro Connection ein Timer erzeugt
+
+Anzahl von Timern gering halten
+-> eher einen Timer starten, der zyklisch alte Verbindungen trennt
+
+
+## Node - binary stream parser -> packet
+
+http://bigeasy.github.io/node-packet/
+
+http://bigeasy.github.io/packet/
+
+http://nodeweekly.com
+
+LinkedIn Node JS Gruppe
+
+
+## Node - Code Review - sprechender Code
+
+Prototyp Code noch „zu technisch“.
+
+dropLastByte() -> skipUnnecessaryZeroByte()
+
+eher beschreibende Variablen/Funktionen
+
+
+
+stream-parser.js -> Objekt heißt StreamParser
+-> identische Namen
+
+
+* logging = 0 -> false
+
+* listen -> Meldung in Callback rein console.log(‚listening on port …‘)
+
+
+
+Golos Style:
+require sortieren
+
+1. integrierte module, mit Komma
+
+2. npm module ‚express‘, mit Komma
+
+3. lokale module ‚./worker‘,
+
+4. lokale Variablen
+
+
+## Node - eventemitter2
+
+https://github.com/asyncly/EventEmitter2
+
+
+
+## Node - Code Review -> Trennung
+
+Trennung
+
+LPR Parsing
+
+Control File Parsing
+
+Binary Parsing
+
+-> eher eigene kleine Module erstellen
+
+Streams: setEncoding( utf8 ) wegen Chunk Problematik, dass auch „ganze“ Zeichen ankommen
+
+
+Wie Streams testen?
+-> aufpassen, überall aus Events wieder abhängen
+-> pro Test eigene Instanz
+
+
+## Node - Queues
+
+NSQ von bitly
+native mit Node Treiber
+
+http://bitly.github.io/nsq/
+https://github.com/bitly/nsq
+
+
+## Node - WebSockets
+
+
+*Socket.io*
+WebSockets, wenn nicht Flash, wenn nicht AJAX, IFrame, wenn nicht …
+Fallbacks (von neu nach alt, kann aber Probleme bei Firewalls sein, die nach WS Request alles dicht machen)
+kann kein JSESSIONID Coookie mitschicken, daher nicht geeignet bei LoadBalancern die das benötigen für Sticky Sessions
+
+Socket.io Version 1.0 soll das unterstützen, seit einem Jahr warten alle
+
+*Engine.io 1.0*
+Unterstützt WS, Flash, AJAX, …
+Fallback fängt anders herum an (von alt nach neu)
+
+*Primus*
+neues Projekt, Abstraktionslauer über Socket.io oder Engine.io …
+Austausch des Moduls ohne Abhängigkeit zur Anwendung
+
+
+
+* SockJS
+* WebSockets
+* AJAX
+
+WS:
+- WebSocket only nach RFC
+
+—
+SSE - Server Sent Events
+
+
+Reconnect
+
+funktioniert nicht im IE
+
+
+SSE können
+
+```
+id: 2
+data: …
+data: …
+
+id: 3
+data: …
+
+event: printDone
+id: 4
+data: …
+data: …
+```
+
+
+## Node - REST Interfaces, Tests
+
+
+### REST 
+*Restify*
+
+https://github.com/mcavage/node-restify
+
+unterstützt DTrace
+
+*Express*
+Express 4 kommt: http://expressjs.com/4x/api.html
+
+
+
+
+### Tests
+
+* nock
+* npm - network mock
+https://github.com/pgte/nock
+
+`disableNetConnect()`
+nur explizit das über nock gehende Requests werden erlaubt
+
+
+*superagent*
+https://github.com/visionmedia/superagent
+
+
+darauf aufbauend
+
+*supertest*
+https://github.com/visionmedia/supertest
+
+
+
+
+
+### Build Tool Chain
+
+*Browserify*
+während Entwicklung viele js Dateien wie am Server
+Grunt macht per Build Task ein minified js …
+http://browserify.org
+
+*Sizzle*
+wenn man nur CSS Selektoren braucht, jQuery nutzt die auch
 
 
 
