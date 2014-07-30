@@ -12,7 +12,7 @@ https://github.com/creationix/nvm
 
 Dieser läuft auf Unix, nicht auf Windows. Alternativ kann man `n` nehmen, der ist selbst in Node geschrieben
 
-https://github.com/visionmedia/n 
+https://github.com/visionmedia/n
 
 Läuft angeblich auch auf Windows.
 
@@ -22,11 +22,11 @@ Läuft angeblich auch auf Windows.
 ```
 ===
 !==
-``` 
+```
 
 ### ECMAScript 6
 
-Entweder 
+Entweder
 
 ```
 node --harmony app.js
@@ -120,7 +120,7 @@ http://clock.co.uk/tech-blogs/how-to-create-a-private-npmjs-repository
 
 ## Französisch
 
-_"Jede neue Sprache ist wie ein offenes Fenster, das einen neuen Ausblick auf die Welt eröffnet und die Lebensauffassung weitet."_ (Frank Harris) 
+_"Jede neue Sprache ist wie ein offenes Fenster, das einen neuen Ausblick auf die Welt eröffnet und die Lebensauffassung weitet."_ (Frank Harris)
 
 
 ## node debugging
@@ -203,7 +203,7 @@ describe / it /
 — gibt’s derzeit nicht in mocha
 given / when /
 * then
-* 
+*
 
 
 ```
@@ -297,13 +297,13 @@ https://plus.google.com/+PaulIrish/posts/N5t9ny3R6e2
 `node app` -> `./app`
 shebang: `#!/usr/bin/env node`
 
-`./app` => `app` 
+`./app` => `app`
 `package.json` -> `"bin“: „app.js"`
 
-Parameter  
-process.argv  
-0 = node  
-1 = scriptname  
+Parameter
+process.argv
+0 = node
+1 = scriptname
 2 = erster Parameter
 
 https://github.com/visionmedia/commander.js/
@@ -423,7 +423,7 @@ dest.on(‚error‘, foo)
 dest.removeListener('error', foo)
 ```
 
-oder 
+oder
 
 `dest.removeAllListeners('error')`
 
@@ -577,7 +577,7 @@ data: …
 ## Node - REST Interfaces, Tests
 
 
-### REST 
+### REST
 *Restify*
 
 https://github.com/mcavage/node-restify
@@ -710,7 +710,9 @@ https://github.com/andris9/Nodemailer
 https://github.com/felixge/node-require-all
 
 
+## Streams
 
+- [How streams help to raise Node.js performance](https://www.youtube.com/watch?v=QgEuZ52OZtU)
 
 
 
